@@ -21,7 +21,7 @@ export default function WelcomePage() {
 
       <div className="flex w-full max-w-[420px] flex-col items-center gap-7">
         <div className="sl-rise flex flex-col items-center gap-2 text-center" style={{ animationDelay: "1.4s" }}>
-          <p className="text-2xl font-semibold leading-8 tracking-tight">Book local pros in seconds.</p>
+          <p className="text-2xl font-semibold leading-8 tracking-tight">Reserve slots in seconds.</p>
           <p className="text-base text-white/65">Find a business, pick a time, done.</p>
         </div>
         <div className="sl-rise flex w-full flex-col gap-3" style={{ animationDelay: "1.6s" }}>
