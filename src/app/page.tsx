@@ -1,69 +1,49 @@
-import Image from "next/image";
+import { Wordmark } from "@/components/ui/Wordmark";
 
+// Temporary home page for M1 step 2: shows the logo and design tokens.
+// It gets replaced by the real welcome screen in a later step.
 export default function Home() {
+  const swatches = [
+    { name: "Ink", className: "bg-ink" },
+    { name: "Muted", className: "bg-muted" },
+    { name: "Line", className: "bg-line" },
+    { name: "Canvas", className: "bg-canvas" },
+    { name: "Card", className: "bg-card" },
+    { name: "Accent", className: "bg-accent" },
+    { name: "Danger", className: "bg-danger" },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="mx-auto flex min-h-dvh max-w-[560px] flex-col gap-6 px-4 py-12">
+      <Wordmark size={56} />
+      <p className="text-base text-muted">Design tokens are in place. Screens come next.</p>
+
+      <section className="rounded-[var(--radius-card)] bg-card p-5">
+        <h1 className="text-[28px] font-semibold leading-9 tracking-tight">Choose a time</h1>
+        <p className="mt-1 text-[15px] text-muted">Tuesday 10 November · London time</p>
+        <div className="mt-4 grid grid-cols-3 gap-2">
+          <button className="h-[52px] rounded-[var(--radius-control)] border border-line-mid bg-card text-[17px] font-medium">
+            09:00
+          </button>
+          <button className="h-[52px] rounded-[var(--radius-control)] bg-accent text-[17px] font-semibold text-white">
+            10:00
+          </button>
+          <button className="h-[52px] rounded-[var(--radius-control)] border border-line-mid bg-card text-[17px] font-medium">
+            11:30
+          </button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      <ul className="grid grid-cols-4 gap-3 sm:grid-cols-7">
+        {swatches.map((s) => (
+          <li key={s.name} className="flex flex-col gap-1.5 text-xs text-muted">
+            <span className={`h-12 rounded-xl border border-line ${s.className}`} />
+            {s.name}
+          </li>
+        ))}
+      </ul>
+
+      <button className="h-14 rounded-[14px] bg-ink text-[17px] font-semibold text-white">Continue</button>
+    </main>
   );
 }
