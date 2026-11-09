@@ -6,7 +6,7 @@ type WordmarkProps = {
   className?: string;
 };
 
-/** The Slot logo: the word "Slot" in heavy type, with the full stop in the accent colour. */
+/** The Slot logo: the word "Slot" in heavy type, with a square full stop in the accent colour (see .wm-dot). */
 export function Wordmark({ size = 24, tone = "dark", className = "" }: WordmarkProps) {
   return (
     <span
@@ -17,7 +17,8 @@ export function Wordmark({ size = 24, tone = "dark", className = "" }: WordmarkP
       } ${className}`}
       style={{ fontSize: size }}
     >
-      Slot<span className={tone === "light" ? "text-accent-on-dark" : "text-accent"}>.</span>
+      Slot
+      <span aria-hidden="true" className={`wm-dot ${tone === "light" ? "text-accent-on-dark" : "text-accent"}`} />
     </span>
   );
 }

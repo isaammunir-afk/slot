@@ -15,9 +15,7 @@ export default function WelcomePage() {
               {letter}
             </span>
           ))}
-          <span aria-hidden="true" className="sl-dot text-accent-on-dark">
-            .
-          </span>
+          <span aria-hidden="true" className="sl-dot wm-dot text-accent-on-dark" />
         </h1>
       </div>
 
