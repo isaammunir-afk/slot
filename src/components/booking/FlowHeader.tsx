@@ -2,22 +2,24 @@ import type { ReactNode } from "react";
 import { BackButton } from "@/components/ui/BackButton";
 import { StepProgress } from "@/components/ui/StepProgress";
 
-/** Top of every booking step: back button, "Step x of 4" bar, title and subtitle. */
+/** Top of every booking step: back button, "Step x of y" bar, title and subtitle. */
 export function FlowHeader({
   backHref,
   step,
+  totalSteps = 4,
   title,
   subtitle,
 }: {
   backHref: string;
   step?: number;
+  totalSteps?: number;
   title: string;
   subtitle?: ReactNode;
 }) {
   return (
     <header className="flex flex-col gap-5">
       <BackButton href={backHref} />
-      {step && <StepProgress current={step} total={4} />}
+      {step && <StepProgress current={step} total={totalSteps} />}
       <div className="flex flex-col gap-1">
         <h1 className="text-[28px] font-semibold leading-9 tracking-tight">{title}</h1>
         {subtitle && <p className="text-[15px] leading-[22px] text-muted">{subtitle}</p>}

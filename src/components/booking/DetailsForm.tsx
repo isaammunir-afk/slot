@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input, Textarea } from "@/components/ui/Field";
+import { isEmail } from "@/lib/validation-lite";
 import { saveDraft, useDraft, type Draft } from "./draft";
 import { ActionFooter } from "./FlowHeader";
 
@@ -17,7 +18,7 @@ function check(d: Draft): Errors {
   if (!d.name.trim()) errors.name = "Please enter your name.";
   else if (d.name.trim().length > 80) errors.name = "Please keep your name under 80 characters.";
   if (!d.email.trim()) errors.email = "Please enter your email.";
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) errors.email = "That email looks incomplete, e.g. name@example.com";
+  else if (!isEmail(d.email)) errors.email = "That email looks incomplete, e.g. name@example.com";
   if (d.note.length > 500) errors.note = "Please keep the note under 500 characters.";
   return errors;
 }
