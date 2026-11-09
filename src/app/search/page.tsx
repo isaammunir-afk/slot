@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BusinessSearch } from "@/components/search/BusinessSearch";
 import { Wordmark } from "@/components/ui/Wordmark";
-import { businesses } from "@/lib/fake-data";
+import { businesses, nextAvailableLabel } from "@/lib/fake-data";
 
 export const metadata: Metadata = { title: "Find a business" };
 
@@ -13,7 +13,7 @@ export default function SearchPage() {
         <Wordmark size={24} />
       </Link>
       <h1 className="text-[28px] font-semibold leading-9 tracking-tight">Find a business</h1>
-      <BusinessSearch businesses={businesses} />
+      <BusinessSearch businesses={businesses.map((b) => ({ ...b, nextAvailable: nextAvailableLabel(b) }))} />
     </main>
   );
 }

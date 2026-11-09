@@ -13,9 +13,11 @@ import { ChevronRight, Search } from "@/components/ui/icons";
 import { Pill } from "@/components/ui/Pill";
 import { CATEGORIES, type Business, type Category } from "@/lib/fake-data";
 
+export type SearchResult = Business & { nextAvailable: string | null };
+
 type Filter = "All" | Category;
 
-export function BusinessSearch({ businesses }: { businesses: Business[] }) {
+export function BusinessSearch({ businesses }: { businesses: SearchResult[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<Filter>("All");
 
