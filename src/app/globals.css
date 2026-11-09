@@ -99,12 +99,12 @@ dialog.sheet[open] { animation: sheet-up 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
 /* ---------- Wordmark full stop ----------
    Drawn as a square instead of the font's "." so it is exactly as tall as the
-   foot of the "t" (measured: 12.25% of the font size) and sits on the same line.
+   foot of the "t" (measured: 12.5% of the font size) and sits on the same line.
    Sizes are in "em", so it scales with the logo at every size. */
 .wm-dot {
   display: inline-block;
-  width: 0.1225em;
-  height: 0.1225em;
+  width: 0.125em;
+  height: 0.125em;
   margin-left: 0.06em; /* leaves a 0.03em visible gap after the logo's tight letter spacing */
   background: currentColor;
 }
