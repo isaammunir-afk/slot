@@ -11,7 +11,7 @@ export function Chip({ selected, shape = "pill", className = "", ...rest }: Chip
   const shapeClasses =
     shape === "slot"
       ? "h-[52px] w-full rounded-[var(--radius-control)] text-[17px] tabular-nums"
-      : "h-10 shrink-0 rounded-full px-4 text-sm";
+      : "h-11 shrink-0 rounded-full px-4 text-sm";
   const stateClasses = selected
     ? shape === "slot"
       ? "bg-accent font-semibold text-white"

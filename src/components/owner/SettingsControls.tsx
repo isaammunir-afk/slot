@@ -21,9 +21,14 @@ export function ListedSwitch() {
         aria-checked={on}
         aria-labelledby="listed-label"
         onClick={() => setOn(!on)}
-        className={`flex h-8 w-[52px] shrink-0 items-center rounded-full p-[3px] transition-colors ${on ? "justify-end bg-accent" : "justify-start bg-line-mid"}`}
+        className="flex h-11 w-[52px] shrink-0 items-center"
       >
-        <span className="size-[26px] rounded-full bg-white shadow-sm" />
+        {/* The button is 44px tall for easy tapping; the visible track inside is 32px. */}
+        <span
+          className={`flex h-8 w-full items-center rounded-full p-[3px] transition-colors ${on ? "justify-end bg-accent" : "justify-start bg-line-mid"}`}
+        >
+          <span className="size-[26px] rounded-full bg-white shadow-sm" />
+        </span>
       </button>
     </div>
   );
@@ -64,7 +69,7 @@ export function CopyLinkButton({ path }: { path: string }) {
       <button
         type="button"
         onClick={copy}
-        className="flex h-9 shrink-0 items-center rounded-full bg-accent-soft px-3.5 text-[13px] font-semibold text-accent"
+        className="flex h-11 shrink-0 items-center rounded-full bg-accent-soft px-4 text-[13px] font-semibold text-accent"
       >
         <span aria-live="polite">{copied ? "Copied!" : "Copy link"}</span>
       </button>

@@ -50,7 +50,7 @@ export default async function BookingDetailPage({ params }: PageProps<"/dashboar
         <div className="flex min-h-16 flex-col justify-center gap-0.5 border-b border-line py-2">
           <dt className="text-[13px] text-muted">Email</dt>
           <dd>
-            <a href={`mailto:${booking.email}`} className="text-base font-medium text-accent break-all">
+            <a href={`mailto:${booking.email}`} className="inline-flex min-h-11 items-center text-base font-medium text-accent break-all">
               {booking.email}
             </a>
           </dd>

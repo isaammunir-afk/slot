@@ -47,7 +47,7 @@ export function LoginForm() {
         </Button>
         <p className="text-center text-sm text-muted">
           New to Slot?{" "}
-          <Link href="/signup" className="font-semibold text-ink underline-offset-2 hover:underline">
+          <Link href="/signup" className="inline-block py-3 font-semibold text-ink underline-offset-2 hover:underline">
             List your business
           </Link>
         </p>

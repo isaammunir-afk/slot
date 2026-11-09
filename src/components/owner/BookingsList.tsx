@@ -38,7 +38,7 @@ export function BookingsList({ bookings, week }: { bookings: Booking[]; week: Da
             role="tab"
             aria-selected={tab === t.id}
             onClick={() => setTab(t.id)}
-            className={`h-10 rounded-[9px] text-sm ${tab === t.id ? "bg-card font-semibold shadow-sm" : "font-medium text-muted"}`}
+            className={`h-11 rounded-[9px] text-sm ${tab === t.id ? "bg-card font-semibold shadow-sm" : "font-medium text-muted"}`}
           >
             {t.label}
           </button>

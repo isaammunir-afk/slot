@@ -73,7 +73,7 @@ export function SignupForm() {
       </div>
       <p className="text-center text-sm text-muted">
         Already on Slot?{" "}
-        <Link href="/login" className="font-semibold text-ink underline-offset-2 hover:underline">
+        <Link href="/login" className="inline-block py-3 font-semibold text-ink underline-offset-2 hover:underline">
           Sign in
         </Link>
       </p>
