@@ -108,3 +108,49 @@ dialog.sheet[open] { animation: sheet-up 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
   margin-left: 0.06em; /* leaves a 0.03em visible gap after the logo's tight letter spacing */
   background: currentColor;
 }
+
+/* ---------- Page transitions (React <ViewTransition> + the browser View Transitions API) ----------
+   Forward: old page slides a little left and fades, new page slides in from the right.
+   Back: the mirror image. Anything else: a quick crossfade. Old content leaves fast (150ms)
+   so it doesn't compete; new content arrives a touch slower so you can register it. */
+@keyframes vt-fade {
+  from { opacity: 0; filter: blur(2px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+@keyframes vt-slide {
+  from { translate: var(--vt-offset) 0; }
+  to   { translate: 0 0; }
+}
+::view-transition-old(.nav-forward) { --vt-offset: -48px; animation: 150ms ease-in both vt-fade reverse, 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-slide reverse; }
+::view-transition-new(.nav-forward) { --vt-offset: 48px;  animation: 220ms ease-out 100ms both vt-fade, 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-slide; }
+::view-transition-old(.nav-back)    { --vt-offset: 48px;  animation: 150ms ease-in both vt-fade reverse, 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-slide reverse; }
+::view-transition-new(.nav-back)    { --vt-offset: -48px; animation: 220ms ease-out 100ms both vt-fade, 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-slide; }
+::view-transition-old(.nav-fade)    { animation: 120ms ease-in both vt-fade reverse; }
+::view-transition-new(.nav-fade)    { animation: 200ms ease-out 60ms both vt-fade; }
+
+/* The business avatar glides from the search card into the business page. */
+::view-transition-group(.morph) { animation-duration: 360ms; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+/* Keep the tab bar and the bottom action bar still while content moves behind them. */
+::view-transition-group(tab-bar),
+::view-transition-group(action-footer) { animation: none; z-index: 100; }
+::view-transition-old(tab-bar),
+::view-transition-old(action-footer) { display: none; }
+::view-transition-new(tab-bar),
+::view-transition-new(action-footer) { animation: none; }
+
+/* The browser also crossfades the whole page ("root") by default; our pages animate themselves. */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; }
+
+/* Taps during the short animation still reach the page. */
+::view-transition { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { Field, Input } from "@/components/ui/Field";
 import { Clock } from "@/components/ui/icons";
+import { BACK } from "@/lib/transitions";
 
 const LENGTHS = [30, 45, 60, 90];
 
@@ -39,7 +40,7 @@ export function AddTimeForm({ minDate, defaultLength }: { minDate: string; defau
     if (found.date || found.start) return;
     setLoading(true);
     // M1: pretend. M3: a Server Action checks it doesn't overlap another time, then saves it.
-    setTimeout(() => router.push("/dashboard/times"), 600);
+    setTimeout(() => router.push("/dashboard/times", { transitionTypes: BACK }), 600);
   }
 
   return (

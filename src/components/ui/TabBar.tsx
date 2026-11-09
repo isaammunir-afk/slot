@@ -15,6 +15,7 @@ export function TabBar({ active }: { active: OwnerTab }) {
   return (
     <nav
       aria-label="Owner menu"
+      style={{ viewTransitionName: "tab-bar" }}
       className="fixed inset-x-0 bottom-0 border-t border-line bg-card pb-[max(env(safe-area-inset-bottom),12px)] pt-1.5"
     >
       <ul className="mx-auto grid max-w-[560px] grid-cols-4">

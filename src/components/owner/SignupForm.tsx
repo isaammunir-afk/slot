@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Field, Input } from "@/components/ui/Field";
 import { Check } from "@/components/ui/icons";
 import { isEmail } from "@/lib/validation-lite";
+import { FORWARD } from "@/lib/transitions";
 
 type Errors = { name?: string; email?: string; password?: string };
 
@@ -36,7 +37,7 @@ export function SignupForm() {
     }
     setLoading(true);
     // M1: pretend. M3: Supabase creates the account and emails a confirmation link.
-    setTimeout(() => router.push("/onboarding"), 600);
+    setTimeout(() => router.push("/onboarding", { transitionTypes: FORWARD }), 600);
   }
 
   return (

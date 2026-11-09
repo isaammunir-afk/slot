@@ -8,6 +8,7 @@ import { Calendar, Trash } from "@/components/ui/icons";
 import { Pill } from "@/components/ui/Pill";
 import type { Day } from "@/lib/fake-data";
 import type { OwnerSlot } from "@/lib/fake-owner";
+import { FORWARD } from "@/lib/transitions";
 
 /** Pick a day, see its open and booked times, remove open ones. */
 export function TimesManager({ week, slotsByDate }: { week: Day[]; slotsByDate: Record<string, OwnerSlot[]> }) {
@@ -61,7 +62,7 @@ export function TimesManager({ week, slotsByDate }: { week: Day[]; slotsByDate: 
                 {s.start} – {s.end}
               </span>
               {s.status === "booked" ? (
-                <Link href={`/dashboard/bookings/${s.bookingId}`} className="flex min-h-12 flex-1 items-center justify-between gap-2 pr-3">
+                <Link href={`/dashboard/bookings/${s.bookingId}`} transitionTypes={FORWARD} className="flex min-h-12 flex-1 items-center justify-between gap-2 pr-3">
                   <span className="text-sm text-muted">{s.name}</span>
                   <Pill tone="booked">Booked</Pill>
                 </Link>
@@ -90,7 +91,7 @@ export function TimesManager({ week, slotsByDate }: { week: Day[]; slotsByDate: 
         <EmptyState
           icon={<Calendar size={28} />}
           title={`No times on ${day.name}`}
-          action={<ButtonLink href="/dashboard/times/new" size="md">Add a time</ButtonLink>}
+          action={<ButtonLink href="/dashboard/times/new" transitionTypes={FORWARD} size="md">Add a time</ButtonLink>}
         >
           Customers can’t book this day until you add a time.
         </EmptyState>

@@ -7,6 +7,7 @@ import { Field, Input, Textarea } from "@/components/ui/Field";
 import { isEmail } from "@/lib/validation-lite";
 import { saveDraft, useDraft, type Draft } from "./draft";
 import { ActionFooter } from "./FlowHeader";
+import { FORWARD } from "@/lib/transitions";
 
 type Errors = Partial<Record<keyof Draft, string>>;
 
@@ -44,7 +45,7 @@ export function DetailsForm({ slotId, reviewPath, ownerFirstName }: { slotId: st
       return;
     }
     saveDraft(slotId, { name: values.name.trim(), email: values.email.trim(), note: values.note.trim() });
-    router.push(reviewPath);
+    router.push(reviewPath, { transitionTypes: FORWARD });
   }
 
   // Wait for the browser so previously typed details (after pressing Edit) can be filled back in.

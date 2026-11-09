@@ -6,6 +6,7 @@ import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input } from "@/components/ui/Field";
 import { isEmail } from "@/lib/validation-lite";
+import { FORWARD } from "@/lib/transitions";
 
 export function LoginForm() {
   const router = useRouter();
@@ -28,7 +29,7 @@ export function LoginForm() {
     }
     setLoading(true);
     // M1: pretend to sign in. M3: Supabase Auth checks the email and password.
-    setTimeout(() => router.push("/dashboard"), 600);
+    setTimeout(() => router.push("/dashboard", { transitionTypes: FORWARD }), 600);
   }
 
   return (

@@ -6,6 +6,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { ChevronRight, List } from "@/components/ui/icons";
 import type { Day } from "@/lib/fake-data";
 import { initials, type Booking } from "@/lib/fake-owner";
+import { FORWARD } from "@/lib/transitions";
 
 type Tab = "upcoming" | "cancelled";
 
@@ -56,7 +57,7 @@ export function BookingsList({ bookings, week }: { bookings: Booking[]; week: Da
             <ul className="rounded-2xl bg-card px-4">
               {g.items.map((b) => (
                 <li key={b.id} className="border-b border-line last:border-b-0">
-                  <Link href={`/dashboard/bookings/${b.id}`} className="flex min-h-16 items-center gap-3">
+                  <Link href={`/dashboard/bookings/${b.id}`} transitionTypes={FORWARD} className="flex min-h-16 items-center gap-3">
                     <span aria-hidden="true" className="flex size-10 shrink-0 items-center justify-center rounded-full bg-canvas text-[13px] font-semibold">
                       {initials(b.name)}
                     </span>

@@ -31,7 +31,7 @@ export function FlowHeader({
 /** The white bar fixed to the bottom of the screen that holds the main action. */
 export function ActionFooter({ children }: { children: ReactNode }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 border-t border-line bg-card px-4 pb-[max(env(safe-area-inset-bottom),20px)] pt-4">
+    <div style={{ viewTransitionName: "action-footer" }} className="fixed inset-x-0 bottom-0 border-t border-line bg-card px-4 pb-[max(env(safe-area-inset-bottom),20px)] pt-4">
       <div className="mx-auto flex max-w-[528px] flex-col gap-2.5">{children}</div>
     </div>
   );

@@ -8,6 +8,7 @@ import { Field, Input, Select, Textarea } from "@/components/ui/Field";
 import { CATEGORIES } from "@/lib/fake-data";
 import { slugify } from "@/lib/slug";
 import { TIMEZONES } from "@/lib/timezones";
+import { BACK, FORWARD } from "@/lib/transitions";
 
 type Values = { name: string; category: string; area: string; description: string; timezone: string };
 type Errors = Partial<Record<keyof Values, string>>;
@@ -17,10 +18,13 @@ export function BusinessProfileForm({
   initial,
   submitLabel,
   doneHref,
+  doneDirection = "forward",
 }: {
   initial?: Partial<Values>;
   submitLabel: string;
   doneHref: string;
+  /** Which way the page slides after saving: onward (new owner) or back (editing in Settings). */
+  doneDirection?: "forward" | "back";
 }) {
   const router = useRouter();
   const [name, setName] = useState(initial?.name ?? "");
@@ -46,7 +50,7 @@ export function BusinessProfileForm({
     }
     setLoading(true);
     // M1: pretend to save. M3: a Server Action validates with Zod and saves to the database.
-    setTimeout(() => router.push(doneHref), 600);
+    setTimeout(() => router.push(doneHref, { transitionTypes: doneDirection === "back" ? BACK : FORWARD }), 600);
   }
 
   return (

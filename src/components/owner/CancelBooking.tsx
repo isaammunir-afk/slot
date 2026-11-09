@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Calendar } from "@/components/ui/icons";
+import { BACK } from "@/lib/transitions";
 
 /**
  * "Cancel booking" button plus the confirm sheet that slides up from the bottom.
@@ -18,7 +19,7 @@ export function CancelBooking({ firstName, when }: { firstName: string; when: st
   function confirmCancel() {
     setLoading(true);
     // M1: pretend. M3: a Server Action marks the booking cancelled and reopens the time.
-    setTimeout(() => router.push("/dashboard/bookings"), 600);
+    setTimeout(() => router.push("/dashboard/bookings", { transitionTypes: BACK }), 600);
   }
 
   return (

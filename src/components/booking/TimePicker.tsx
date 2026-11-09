@@ -5,6 +5,7 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import type { Slot } from "@/lib/fake-data";
 import { ActionFooter } from "./FlowHeader";
+import { FORWARD } from "@/lib/transitions";
 
 /** Tap a time to select it; Continue unlocks once one is picked. */
 export function TimePicker({ slots, basePath, dayLabel }: { slots: Slot[]; basePath: string; dayLabel: string }) {
@@ -35,7 +36,7 @@ export function TimePicker({ slots, basePath, dayLabel }: { slots: Slot[]; baseP
         <p className="text-center text-sm text-muted" aria-live="polite">
           {selected ? `${dayLabel} · ${selected.start} – ${selected.end}` : "Tap a time to continue"}
         </p>
-        {selected ? <ButtonLink href={`${basePath}/s/${selected.id}`}>Continue</ButtonLink> : <Button disabled>Continue</Button>}
+        {selected ? <ButtonLink href={`${basePath}/s/${selected.id}`} transitionTypes={FORWARD}>Continue</ButtonLink> : <Button disabled>Continue</Button>}
       </ActionFooter>
     </>
   );

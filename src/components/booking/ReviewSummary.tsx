@@ -8,6 +8,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { Alert } from "@/components/ui/icons";
 import { useDraft } from "./draft";
 import { ActionFooter } from "./FlowHeader";
+import { BACK, FORWARD } from "@/lib/transitions";
 
 type Row = { label: string; value: string; editHref?: string };
 
@@ -22,7 +23,7 @@ function Rows({ rows, label }: { rows: Row[]; label: string }) {
               <dd className="break-words text-base font-semibold">{row.value}</dd>
             </div>
             {row.editHref && (
-              <Link href={row.editHref} className="px-1 py-3 text-sm font-medium text-accent" aria-label={`Edit ${row.label.toLowerCase()}`}>
+              <Link href={row.editHref} transitionTypes={BACK} className="px-1 py-3 text-sm font-medium text-accent" aria-label={`Edit ${row.label.toLowerCase()}`}>
                 Edit
               </Link>
             )}
@@ -54,7 +55,7 @@ export function ReviewSummary(props: {
       <EmptyState
         icon={<Alert size={28} />}
         title="We need your details first"
-        action={<ButtonLink href={props.detailsPath} size="md" variant="secondary">Add your details</ButtonLink>}
+        action={<ButtonLink href={props.detailsPath} transitionTypes={BACK} size="md" variant="secondary">Add your details</ButtonLink>}
       >
         This can happen if the page was opened in a new tab.
       </EmptyState>
@@ -65,7 +66,7 @@ export function ReviewSummary(props: {
     setSubmitting(true);
     // M1: pretend to save. In M2 this calls a Server Action that books the slot in the
     // database (and fails gracefully if someone else got it first).
-    setTimeout(() => router.push(props.confirmedPath), 700);
+    setTimeout(() => router.push(props.confirmedPath, { transitionTypes: FORWARD }), 700);
   }
 
   return (
