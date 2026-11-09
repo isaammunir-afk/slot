@@ -45,7 +45,7 @@ export function Field({ id, label, hint, error, optional, children }: FieldProps
 
 const control =
   "w-full rounded-[var(--radius-control)] border border-line-strong bg-card px-3.5 text-base text-ink placeholder:text-muted " +
-  "focus:border-2 focus:border-accent focus:outline-none aria-[invalid=true]:border-2 aria-[invalid=true]:border-danger";
+  "focus:border-2 focus:border-accent focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-2 aria-[invalid=true]:border-danger";
 
 export function Input({ className = "", ...rest }: ComponentProps<"input">) {
   return <input className={`${control} h-[52px] ${className}`} {...rest} />;
