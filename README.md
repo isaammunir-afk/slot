@@ -1,26 +1,32 @@
 # Slot
 
-A simple booking website for a solo small business (tutor, barber, nail technician).
-Customers book an available time slot in under 30 seconds; the owner manages slots
-and sees bookings.
+A booking marketplace for solo small businesses (tutors, barbers, nail technicians,
+trainers). Customers search for a business and book an open time in under 30 seconds,
+no account needed. Each business owner signs up, sets up their page and manages
+their times and bookings.
 
-**Status:** Milestone 1 (project skeleton) in progress.
+**Status:** Milestone 1 (skeleton + static screens) in progress.
 
 ## Features (MVP)
 
 Customers (no login):
-- See the business name and available slots for the next 7 days
-- Pick a slot, enter name, email and an optional note, confirm
-- Booked slots disappear for everyone else (no double-booking)
+- Welcome screen, then search businesses by name, service or area, with category filters
+- Business page: who they are, the next free time
+- Book in 4 steps: day → time → name/email/note → review & confirm
+- Booked times disappear for everyone else (no double-booking)
 
-Owner (login required):
-- Email/password login
-- Dashboard: add/remove slots, see upcoming bookings, cancel a booking
-- Set the business time zone
+Business owners (login required):
+- Sign up with email and password (email confirmation), then set up a business page:
+  name, category, area, description, time zone
+- Home: today's bookings, next customer, weekly numbers
+- Bookings: upcoming and cancelled, booking detail, cancel a booking
+- Times: add and remove open times per day
+- Settings: edit the business profile, show or hide it in search, copy the booking link
 
 ## Booking rules
-- Slots can't be booked less than 1 hour before they start
-- When the owner cancels a booking, the slot reopens
+- A time can't be booked less than 1 hour before it starts
+- When an owner cancels a booking, the time reopens
+- Owners only ever see their own business's times and bookings
 
 ## Tech stack
 Next.js (App Router) · TypeScript · Tailwind CSS · Supabase (Postgres + Auth) · Vercel
@@ -37,16 +43,20 @@ Then open http://localhost:3000. Copy `.env.example` to `.env.local` and fill it
 (needed from Milestone 2).
 
 ## Roadmap
-- [ ] M1 — Skeleton, design system, static booking page, deployed
-- [ ] M2 — Supabase tables + RLS, real slots, bookings saved
-- [ ] M3 — Owner login + dashboard
-- [ ] M4 — Polish: mobile, edge cases, double-booking, accessibility
-- [ ] M5 — Security audit, README, case study
+- [ ] M1: Skeleton, design system, all screens as static pages with fake data, deployed
+- [ ] M2: Supabase tables (businesses, slots, bookings) + RLS, search, real booking
+- [ ] M3: Owner sign-up, onboarding, login and dashboard
+- [ ] M4: Polish: mobile, edge cases, double-booking, accessibility
+- [ ] M5: Security audit, README, case study
 
 ## Later (not in MVP)
 - Payments
-- Email notifications / reminders
-- Multiple staff
-- Multiple businesses
+- Email notifications and reminders
+- Customer accounts and "my bookings"
+- Reviews and ratings
+- Maps and distance-based search
+- Business photos
+- Verifying businesses and moderating spam sign-ups
+- Multiple staff per business
 - Recurring availability
 - Calendar sync (Google/Apple/Outlook)

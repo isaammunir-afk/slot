@@ -1,7 +1,7 @@
 # Slot
 
-Booking site for a solo small business. Customers book a slot in under 30s
-(no login); the owner logs in to manage slots and bookings.
+Booking marketplace for solo small businesses. Customers search for a business and
+book a time in under 30s (no login). Owners sign up, set up a page, manage times/bookings.
 
 @AGENTS.md
 
@@ -13,10 +13,11 @@ Booking site for a solo small business. Customers book a slot in under 30s
 ## Commands
 - `npm run dev` — dev server at http://localhost:3000
 - `npm run build` — production build; must pass before every commit
-- `npm run lint` / `npm run typecheck` — ESLint / `tsc --noEmit`
+- `npm run lint` / `npm run typecheck` — ESLint / typegen + `tsc --noEmit`
 
 ## Structure
-- `src/app/` routes: public `/`, `/book/[slotId]`, `/book/confirmed`; owner `/login`, `/dashboard`
+- Customer routes: `/` welcome, `/search`, `/b/[slug]`, `/b/[slug]/book/...`
+- Owner routes: `/login`, `/signup`, `/onboarding`, `/dashboard/...`
 - `src/components/ui/` design-system primitives; `src/components/<feature>/` feature parts
 - `src/lib/` helpers (dates, validation, supabase clients)
 - `supabase/migrations/` every schema + RLS change as SQL, committed
@@ -24,19 +25,21 @@ Booking site for a solo small business. Customers book a slot in under 30s
 ## Conventions
 - Server Components by default; "use client" only where interactivity needs it
 - Mutations via Server Actions; validate every input with Zod on the server
-- Store times as UTC `timestamptz`; display in the business timezone (owner-set)
-- Design: black/white professional theme, one accent; use tokens, never raw hex
-- Mobile-first (style ~375px first); tap targets >= 48px; inputs >= 16px font
+- Store times as UTC `timestamptz`; display in the business's own time zone
+- Design: black/white, one accent; wordmark logo "Slot." (accent full stop);
+  white cards on #F5F5F5; one job per screen; use tokens, never raw hex
+- Mobile-first (style ~375px first); tap targets >= 44px; inputs >= 16px font
 - Every data view has loading, empty and error states
 - Accessible: semantic HTML, a label on every input, visible focus, AA contrast
 - Small commits, messages like `feat: ...`, `fix: ...`, `chore: ...`
 
 ## Security rules (non-negotiable)
 - RLS enabled on every table, with explicit policies
-- Public may only: read open future slots, and book via the `book_slot()` function
+- Public may only: search listed businesses, read open future slots, book via `book_slot()`
 - Public may never read bookings or any customer personal data
-- Only the authenticated owner manages slots and reads/cancels bookings
-- Supabase sign-ups disabled; the owner is the only user
+- An owner may only manage the slots and bookings of businesses they own
+  (every owner policy checks `businesses.owner_id = auth.uid()`)
+- Owner sign-up requires email confirmation; customers have no accounts
 - Browser may only see `NEXT_PUBLIC_SUPABASE_URL` + the publishable/anon key
 - The secret/service-role key never goes in client code, a `NEXT_PUBLIC_` var, or git
 - `.env*.local` is git-ignored; list variable names in `.env.example`
