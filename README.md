@@ -5,7 +5,7 @@ trainers). Customers search for a business and book an open time in under 30 sec
 no account needed. Each business owner signs up, sets up their page and manages
 their times and bookings.
 
-**Status:** Milestone 1 (skeleton + static screens) in progress.
+**Status:** Milestone 1 (skeleton + static screens) built with fake data; deploying to Vercel for review.
 
 ## Features (MVP)
 
